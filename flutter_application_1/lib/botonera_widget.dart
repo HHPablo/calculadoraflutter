@@ -28,6 +28,9 @@ class _BotoneraWidgetState extends State<BotoneraWidget> {
       "+",
       "0",
       "=",
+      "-",
+      "*",
+      "/",
     ];
     return Expanded(
       child: GridView.builder(
@@ -43,7 +46,13 @@ class _BotoneraWidgetState extends State<BotoneraWidget> {
               child: ElevatedButton(
             onPressed: () {
               if (numeros[i] == '+') {
+                cp!.op = '+';
                 cp!.eventoMas();
+              } else if (numeros[i] == '-') {
+                cp!.eventoresta();
+              } else if (numeros[i] == '*') {
+                cp!.op = '*';
+                cp!.eventomult();
               } else if (numeros[i] == '=') {
                 cp!.eventoIgual();
               } else {
@@ -57,5 +66,3 @@ class _BotoneraWidgetState extends State<BotoneraWidget> {
     );
   }
 }
-
-void mostrarNumero() {}

@@ -4,11 +4,13 @@ class CalculadoraProvider extends ChangeNotifier {
   int a = 0;
   int b = 0;
   int c = 0;
+  String op = "";
   String cadPant = "";
   void borrarTodo() {
     a = 0;
     b = 0;
     c = 0;
+
     cadPant = "";
     notifyListeners();
   }
@@ -23,6 +25,23 @@ class CalculadoraProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void eventoresta() {
+    op = '-';
+    a = int.parse(cadPant);
+    limpiarDatos();
+  }
+
+  void eventomult() {
+    op = '*';
+    a = int.parse(cadPant);
+    limpiarDatos();
+  }
+
+  void eventodiv() {
+    a = int.parse(cadPant);
+    limpiarDatos();
+  }
+
   void eventoMas() {
     a = int.parse(cadPant);
     limpiarDatos();
@@ -30,7 +49,13 @@ class CalculadoraProvider extends ChangeNotifier {
 
   void eventoIgual() {
     b = int.parse(cadPant);
-    a = a + b;
+    if (op == "+") {
+      a = a + b;
+    } else if (op == "-") {
+      a -= b;
+    } else if (op == "*") {
+      a = a * b;
+    }
     cadPant = "$a";
     notifyListeners();
   }
